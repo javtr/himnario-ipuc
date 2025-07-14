@@ -4,7 +4,7 @@ import SearchBar from './components/SearchBar';
 import AlphabetFilter from './components/AlphabetFilter';
 import SongList from './components/SongList';
 import SongDetail from './components/SongDetail';
-import songsData from './data/songs.json';
+const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/javtr/himnario-ipuc/main/src/data/songs.json';
 import './styles/App.css';
 
 function App() {
@@ -15,8 +15,13 @@ function App() {
 
   // Cargar canciones al inicio
   useEffect(() => {
-    setSongs(songsData);
-    setFilteredSongs(songsData);
+    fetch(GITHUB_JSON_URL)
+      .then(response => response.json())
+      .then(data => {
+        setSongs(data);
+        setFilteredSongs(data);
+      })
+      .catch(error => console.error('Error al cargar las canciones:', error));
   }, []);
 
   // Filtrar canciones cuando cambia el término de búsqueda o la letra activa
