@@ -4,7 +4,7 @@ import SearchBar from './components/SearchBar';
 import AlphabetFilter from './components/AlphabetFilter';
 import SongList from './components/SongList';
 import SongDetail from './components/SongDetail';
-const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/javtr/himnario-ipuc/main/src/data/songs.json';
+const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/javtr/himnario-ipuc/main/src/data/songs.json?v=' + new Date().getTime();
 import './styles/App.css';
 
 function App() {
