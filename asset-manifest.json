@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/himnario-ipuc/static/css/main.f0a0599c.css",
-    "main.js": "/himnario-ipuc/static/js/main.91a29e2d.js",
+    "main.js": "/himnario-ipuc/static/js/main.efdc430a.js",
     "index.html": "/himnario-ipuc/index.html",
     "main.f0a0599c.css.map": "/himnario-ipuc/static/css/main.f0a0599c.css.map",
-    "main.91a29e2d.js.map": "/himnario-ipuc/static/js/main.91a29e2d.js.map"
+    "main.efdc430a.js.map": "/himnario-ipuc/static/js/main.efdc430a.js.map"
   },
   "entrypoints": [
     "static/css/main.f0a0599c.css",
-    "static/js/main.91a29e2d.js"
+    "static/js/main.efdc430a.js"
   ]
 }
