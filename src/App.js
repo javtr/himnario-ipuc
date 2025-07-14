@@ -4,7 +4,7 @@ import SearchBar from './components/SearchBar';
 import AlphabetFilter from './components/AlphabetFilter';
 import SongList from './components/SongList';
 import SongDetail from './components/SongDetail';
-const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/javtr/himnario-ipuc/main/src/data/songs.json?v=' + new Date().getTime();
+const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/javtr/himnario-ipuc/main/src/data/songs.json?v=';
 import './styles/App.css';
 
 function App() {
@@ -15,7 +15,8 @@ function App() {
 
   // Cargar canciones al inicio
   useEffect(() => {
-    fetch(GITHUB_JSON_URL)
+    const url = GITHUB_JSON_URL + new Date().getTime();
+    fetch(url)
       .then(response => response.json())
       .then(data => {
         setSongs(data);
