@@ -6,7 +6,7 @@ import SongList from './components/SongList';
 import SongDetail from './components/SongDetail';
 import './styles/App.css';
 
-const GITHUB_JSON_URL = 'https://javtr.github.io/himnario-ipuc/data/songs.json';
+const GITHUB_JSON_URL = '/data/songs.json';
 
 function App() {
   const [songs, setSongs] = useState([]);
@@ -16,14 +16,27 @@ function App() {
 
   // Cargar canciones al inicio
   useEffect(() => {
-    const url = GITHUB_JSON_URL + new Date().getTime();
+    const url = GITHUB_JSON_URL + '?v=' + new Date().getTime();
     fetch(url)
-      .then(response => response.json())
-      .then(data => {
-        setSongs(data);
-        setFilteredSongs(data);
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error al cargar las canciones: ' + response.status);
+        }
+        return response.json();
       })
-      .catch(error => console.error('Error al cargar las canciones:', error));
+      .then(data => {
+        if (Array.isArray(data)) {
+          setSongs(data);
+          setFilteredSongs(data);
+        } else {
+          console.error('Los datos no son un array válido:', data);
+        }
+      })
+      .catch(error => {
+        console.error('Error al cargar las canciones:', error);
+        setSongs([]);
+        setFilteredSongs([]);
+      });
   }, []);
 
   // Filtrar canciones cuando cambia el término de búsqueda o la letra activa
