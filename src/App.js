@@ -6,7 +6,7 @@ import SongList from './components/SongList';
 import SongDetail from './components/SongDetail';
 import './styles/App.css';
 
-const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/javtr/himnario-ipuc/main/src/data/songs.json?v=';
+const GITHUB_JSON_URL = 'https://javtr.github.io/himnario-ipuc/data/songs.json';
 
 function App() {
   const [songs, setSongs] = useState([]);
