@@ -10,13 +10,13 @@ function SearchBar({ onSearch }) {
   };
 
   return (
-    <div className="mb-6">
+    <div className="mb-6 w-full flex justify-center">
       <input
         type="text"
-        placeholder="Buscar canciones..."
+        placeholder="Buscar en el himnario..."
         value={searchTerm}
         onChange={handleChange}
-        className="w-full px-4 py-2 rounded-full border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-800"
+        className="w-full max-w-md px-5 py-3 rounded-card bg-[#E6F2EA] text-gray-800 placeholder-gray-400 border-none shadow-sm focus:ring-2 focus:ring-green-300 focus:outline-none text-base dark:bg-[#23412F] dark:text-green-200 dark:placeholder-green-300"
       />
     </div>
   );

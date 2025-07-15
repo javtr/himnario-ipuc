@@ -10,10 +10,10 @@ function SongDetail({ songs }) {
 
   if (!song) {
     return (
-      <div className="min-h-screen bg-gray-100 py-12 px-4">
-        <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 text-center">
-          <h2 className="text-2xl font-bold text-red-600 mb-4">Himno no encontrado</h2>
-          <Link to="/" className="text-blue-600 hover:underline">
+      <div className="min-h-screen bg-[#F7FAF7] py-12 px-4 flex flex-col items-center justify-center dark:bg-[#122218]">
+        <div className="max-w-2xl w-full bg-white rounded-card shadow-md p-8 text-center dark:bg-[#23412F] dark:text-green-200">
+          <h2 className="text-2xl font-bold text-red-600 mb-4 dark:text-green-300">Himno no encontrado</h2>
+          <Link to="/" className="text-green-700 hover:underline font-semibold dark:text-green-200 dark:hover:text-green-300">
             Volver al listado de himnos
           </Link>
         </div>
@@ -22,56 +22,45 @@ function SongDetail({ songs }) {
   }
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4">
-      <div className="max-w-4xl mx-auto mb-6">
+    <div className="min-h-screen bg-[#F7FAF7] py-12 px-4 flex flex-col items-center dark:bg-[#122218]">
+      <div className="w-full max-w-2xl mx-auto mb-6 flex justify-start">
         <Link 
           to="/" 
-          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded transition-colors"
+          className="inline-block bg-[#E6F2EA] hover:bg-green-100 text-green-700 font-semibold py-2 px-8 rounded-full transition-colors dark:bg-[#2FC47A] dark:text-[#122218] dark:hover:bg-green-300"
         >
           Volver al listado
         </Link>
       </div>
-      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
-        <div className="p-8">
-          <div className="mb-6 text-center">
-            <h1 className="text-3xl font-bold text-blue-800 mb-2">{song.title}</h1>
+      <div className="max-w-2xl w-full bg-white rounded-card shadow-md p-2 md:p-8 mx-auto dark:bg-[#23412F] dark:text-green-200">
+        <div className="mb-6 text-center">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2 dark:text-green-200">{song.title}</h1>
+        </div>
+        <div className="bg-[#E6F2EA] p-6 rounded-2xl dark:bg-[#2C4C3A]">
+          <div className="whitespace-pre-wrap font-sans text-gray-800 text-lg leading-relaxed dark:text-green-200">
+            {song.lyrics.split('\n').map((line, index) => {
+              if (!line.trim()) {
+                return <br key={index} />;
+              }
+              const isSectionHeader = /^[IVXLCDM]+\.?$/.test(line.trim()) || 
+                line.trim().toLowerCase() === 'coro';
+              const isShout = /^¡.*!$/.test(line.trim());
+              if (isSectionHeader) {
+                return (
+                  <div key={index} className="font-bold text-xl text-green-700 mt-6 mb-2 dark:text-green-300">
+                    {line}
+                  </div>
+                );
+              } else if (isShout) {
+                return (
+                  <div key={index} className="font-bold text-green-600 my-2 dark:text-green-200">
+                    {line}
+                  </div>
+                );
+              } else {
+                return <div key={index} className="my-1">{line}</div>;
+              }
+            })}
           </div>
-          
-          <div className="bg-gray-50 p-6 rounded-lg">
-            <div className="whitespace-pre-wrap font-sans text-gray-800 text-lg leading-relaxed">
-              {song.lyrics.split('\n').map((line, index, array) => {
-                // Si la línea está vacía, mostramos un salto de línea
-                if (!line.trim()) {
-                  return <br key={index} />;
-                }
-                
-                // Verificar si la línea es un número romano o la palabra "Coro"
-                const isSectionHeader = /^[IVXLCDM]+\.?$/.test(line.trim()) || 
-                                     line.trim().toLowerCase() === 'coro';
-                
-                // Verificar si la línea es un grito o expresión (texto entre signos de exclamación)
-                const isShout = /^¡.*!$/.test(line.trim());
-                
-                // Aplicar estilos según el tipo de línea
-                if (isSectionHeader) {
-                  return (
-                    <div key={index} className="font-bold text-xl text-blue-800 mt-6 mb-2">
-                      {line}
-                    </div>
-                  );
-                } else if (isShout) {
-                  return (
-                    <div key={index} className="font-bold text-blue-700 my-2">
-                      {line}
-                    </div>
-                  );
-                } else {
-                  return <div key={index} className="my-1">{line}</div>;
-                }
-              })}
-            </div>
-          </div>
-          
         </div>
       </div>
     </div>

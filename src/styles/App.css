@@ -151,3 +151,40 @@
     width: 100%;
   }
 }
+
+/* Modo oscuro */
+body.dark, .dark .app, .dark .song-list, .dark .song-card {
+  background-color: #18181b !important;
+  color: #f3f4f6 !important;
+}
+
+.dark .song-card {
+  background: #23272f !important;
+  color: #f3f4f6 !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.4);
+}
+
+.dark .song-card h3 {
+  color: #60a5fa !important;
+}
+
+.dark .view-lyrics {
+  background-color: #334155 !important;
+  color: #facc15 !important;
+}
+
+.dark .view-lyrics:hover {
+  background-color: #1e293b !important;
+}
+
+.dark .letter-button {
+  background: #23272f !important;
+  color: #60a5fa !important;
+  border-color: #334155 !important;
+}
+
+.dark .letter-button:hover, .dark .letter-button.active {
+  background: #334155 !important;
+  color: #facc15 !important;
+  border-color: #facc15 !important;
+}
