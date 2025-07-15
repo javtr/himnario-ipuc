@@ -6,7 +6,7 @@ import SongList from './components/SongList';
 import SongDetail from './components/SongDetail';
 import './styles/App.css';
 
-const GITHUB_JSON_URL = '/data/songs.json';
+const GITHUB_JSON_URL = 'https://javtr.github.io/himnario-ipuc-json/songs.json';
 
 function App() {
   const [songs, setSongs] = useState([]);
@@ -97,7 +97,7 @@ function App() {
             </div>
           } 
         />
-        <Route path="/song/:id" element={<SongDetail />} />
+        <Route path="/song/:id" element={<SongDetail songs={songs} />} />
       </Routes>
     </Router>
   );

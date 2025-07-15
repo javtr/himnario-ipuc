@@ -2,9 +2,11 @@ import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import songsData from '../data/songs.json';
 
-function SongDetail() {
+function SongDetail({ songs }) {
   const { id } = useParams();
-  const song = songsData.find(song => song.id === parseInt(id));
+  // Usar la prop songs si está disponible y tiene datos, si no, usar el archivo local como respaldo
+  const dataSource = Array.isArray(songs) && songs.length > 0 ? songs : songsData;
+  const song = dataSource.find(song => song.id === parseInt(id));
 
   if (!song) {
     return (
@@ -21,11 +23,18 @@ function SongDetail() {
 
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-4">
+      <div className="max-w-4xl mx-auto mb-6">
+        <Link 
+          to="/" 
+          className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded transition-colors"
+        >
+          Volver al listado
+        </Link>
+      </div>
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md overflow-hidden">
         <div className="p-8">
-          <div className="mb-6">
+          <div className="mb-6 text-center">
             <h1 className="text-3xl font-bold text-blue-800 mb-2">{song.title}</h1>
-            <p className="text-gray-600">Número: {song.number}</p>
           </div>
           
           <div className="bg-gray-50 p-6 rounded-lg">
@@ -63,14 +72,6 @@ function SongDetail() {
             </div>
           </div>
           
-          <div className="mt-8 text-center">
-            <Link 
-              to="/" 
-              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-6 rounded transition-colors"
-            >
-              Volver al listado
-            </Link>
-          </div>
         </div>
       </div>
     </div>
